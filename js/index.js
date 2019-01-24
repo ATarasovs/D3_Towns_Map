@@ -5,6 +5,7 @@
  * The core functionality of D3 map was built with the help of https://bost.ocks.org/mike/map/ tutorial.
  */
 
+
 $(document).ready(function() {
 
     svg.append("rect") //append background to the map
@@ -108,7 +109,6 @@ function appendCities() {
 function initButtonClick() {
     $('.requestButton').click(function(){
         townsNumber = $(".numberInput").val();
-        // console.log(townsNumber.isInteger());
         if (townsNumber != null && townsNumber != "") {
             getTownsList();
 
@@ -119,11 +119,9 @@ function initButtonClick() {
     });
 
     $('.howItWorks').click(function(){
-        console.log("worked");
     });
 
     $(document).on("click", ".city", function (e) {
-        // console.log($(this).attr('attribute-town'));
         window.open("https://en.wikipedia.org/wiki/" + $(this).attr('attribute-town'));
     });
 
