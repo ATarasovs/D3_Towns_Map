@@ -67,8 +67,29 @@ function getTownsList() {
                 }
                 marks = marks.concat({long: longitude, lat: latitude, town: town, population: population, county: county, size: size});
             });
+            appendCities();
         }
     });
+}
+
+function appendCities() {
+    g.selectAll("image").remove();
+    g.selectAll(".townTitle").remove();
+
+    g.selectAll("image")
+        .data(marks)
+        .enter()
+        .append("image")
+        .attr('class','mark city')
+        .attr('attribute-town',  function(d) { return d.town})
+        .attr('style','cursor: pointer;')
+        .attr('width', function(d) { return d.size})
+        .attr('height', function(d) { return d.size})
+        .attr("xlink:href",'http://icons.iconarchive.com/icons/aha-soft/standard-city/256/city-icon.png')
+        .attr("transform", function(d) { return "translate(" + projection([d.long,d.lat]) + ")"; })
+        .attr("text-anchor", "middle")
+        .append("title")
+        .text(function(d) { return "Town: " + d.town + "\nCounty: " + d.county + "\nPopulation: " + d.population});
 }
 
 //in zoom
