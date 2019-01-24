@@ -47,29 +47,25 @@
                 // Global variables used in index.js
                 var width = 900,
                     height = 600;
-                var projection = d3.geo.albers()
+                var projection = d3.geo.albers() // projection
                     .center([0, 55.4])
                     .rotate([4.4, 0])
                     .parallels([50, 60])
                     .scale(5000)
-                    .translate([width / 2, height / 2]);
+                    .translate([width / 2, height / 2]); // translation
                 var path = d3.geo.path()
                     .projection(projection);
                 var zoom = d3.behavior.zoom()
                     .translate([0, 0])
-                    .scale(1)
+                    .scale(1) //scaling
                     .scaleExtent([1, 8])
-                    // enable zooming and dragging
-                    .on("zoom", zoomed);
+                    .on("zoom", zoomed); // enable zooming and dragging
                 // append SVG tag to body with assigned width and height
                 var svg = d3.select("body").append("svg")
                     .attr("width", width)
                     .attr("height", height);
-
                 var g, subunits, towns;
-
                 var marks = [];
-
                 var townsNumber = 20;
             </script>
         </div>
@@ -83,14 +79,20 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">How it works</h4>
                     </div>
+
                     <div class="modal-body">
-                        <p>Some text in the modal.</p>
+                        <p>1. Type in the number of cities you would like to display on the map in the right top corner.</p>
+                        <p>2. Click "Generate Cities" button.</p>
+                        <p>3. See the output on the map.</p>
+                        <p>4. Move the pointer on any town to see details (name, population, county).</p>
+                        <p>5. Click on the town icon to see more detail about that on Wikipedia.</p>
+                        <p>6. You might zoom the map by scrolling or double clicking on that.</p>
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </body>
