@@ -1,0 +1,52 @@
+.background {
+    fill: #59c0dd;
+}
+.subunit.SCT {
+    fill: #dd6e38;
+}
+.subunit.WLS {
+    fill: #dd3d3e;
+}
+.subunit.NIR {
+    fill: #6e56dd;
+}
+.subunit.ENG {
+    fill: #4fdd54;
+}
+.subunit.IRL {
+    display: none;
+}
+.subunit.IMN {
+    fill: #ddda3b;
+}
+body {
+    background: #70e1f5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #c89e6e, #70e1f5, #c89e6e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #c89e6e, #70e1f5, #c89e6e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.navbar-default {
+    background: #d0cfd2;
+    border-color: #d0cfd2;
+}
+svg {
+    display: block;
+    margin: auto;
+}
+
+.subunit-label {
+    fill: #1a191b;
+    fill-opacity: .5;
+    font-size: 12px;
+    font-weight: 600;
+    text-anchor: middle;
+}
+
+.subunit-label.IRL {
+    display: none;
+}
+
+.top-20 {
+    margin-top: 35px;
+}
