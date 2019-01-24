@@ -1,18 +1,28 @@
+/**
+ * Author: Aleksandrs Tarasovs
+ * Date: 24.01.2019
+ *
+ * The core functionality of D3 map was built with the help of https://bost.ocks.org/mike/map/ tutorial.
+ */
+
 $(document).ready(function() {
-    //append background
-    svg.append("rect")
+
+    svg.append("rect") //append background to the map
         .attr("class", "background")
         .attr("width", width)
         .attr("height", height);
 
-    // append <g> to svg container
-    g = svg.append("g");
+    g = svg.append("g"); // append <g> to svg container
 
-    // call zoom for zooming and dragging
-    svg.call(zoom);
-    // .call(zoom.event);
+    svg.call(zoom);  // call zoom for zooming and dragging
+
+    // draw UK map using D3
     drawMap();
+
+    // functions on button click
     initButtonClick();
+
+    // functions on key press
     initKeyPress();
 });
 
@@ -39,22 +49,23 @@ function drawMap() {
     });
 }
 
+// Get json with cities (town names, lat, long, population and county)
 function getTownsList() {
     marks = [];
-    var cities = [];
-    var size = 0;
+    var size = 0; // image size assigned based on the population
 
+    // request json from url
     towns = $.ajax({
         dataType: "json",
         url: "http://35.211.124.163/Circles/Towns/" + townsNumber,
         mimeType: "application/json",
         success: function(result){
             $.each(result, function(i, obj) {
-                var latitude  = obj.lat;
-                var longitude  = obj.lng;
-                var town = obj.Town;
-                var population  = obj.Population;
-                var county = obj.County;
+                var latitude  = obj.lat; // latitude
+                var longitude  = obj.lng; // longitude
+                var town = obj.Town; // town name
+                var population  = obj.Population; //population
+                var county = obj.County; // county
 
                 if (population <= 50000) {
                     size = 7;
@@ -65,6 +76,7 @@ function getTownsList() {
                 } else {
                     size = 13;
                 }
+
                 marks = marks.concat({long: longitude, lat: latitude, town: town, population: population, county: county, size: size});
             });
             appendCities();
@@ -72,6 +84,7 @@ function getTownsList() {
     });
 }
 
+// Function to append cities to  the map
 function appendCities() {
     g.selectAll("image").remove();
     g.selectAll(".townTitle").remove();
@@ -131,7 +144,7 @@ function initKeyPress() {
     });
 }
 
-//in zoom
+// Zoom
 function zoomed() {
     g.style("stroke-width", 1.5 / d3.event.scale + "px");
     g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
