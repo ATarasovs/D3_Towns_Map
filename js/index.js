@@ -39,6 +39,38 @@ function drawMap() {
     });
 }
 
+function getTownsList() {
+    marks = [];
+    var cities = [];
+    var size = 0;
+
+    towns = $.ajax({
+        dataType: "json",
+        url: "http://35.211.124.163/Circles/Towns/" + townsNumber,
+        mimeType: "application/json",
+        success: function(result){
+            $.each(result, function(i, obj) {
+                var latitude  = obj.lat;
+                var longitude  = obj.lng;
+                var town = obj.Town;
+                var population  = obj.Population;
+                var county = obj.County;
+
+                if (population <= 50000) {
+                    size = 7;
+                } else if (population > 50000 && population <= 100000) {
+                    size = 9;
+                } else if (population > 100000 && population <= 150000) {
+                    size = 11;
+                } else {
+                    size = 13;
+                }
+                marks = marks.concat({long: longitude, lat: latitude, town: town, population: population, county: county, size: size});
+            });
+        }
+    });
+}
+
 //in zoom
 function zoomed() {
     g.style("stroke-width", 1.5 / d3.event.scale + "px");
