@@ -38,3 +38,9 @@ function drawMap() {
             .text(function(d) { return d.properties.name; });
     });
 }
+
+//in zoom
+function zoomed() {
+    g.style("stroke-width", 1.5 / d3.event.scale + "px");
+    g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+}
