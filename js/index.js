@@ -92,6 +92,45 @@ function appendCities() {
         .text(function(d) { return "Town: " + d.town + "\nCounty: " + d.county + "\nPopulation: " + d.population});
 }
 
+function initButtonClick() {
+    $('.requestButton').click(function(){
+        townsNumber = $(".numberInput").val();
+        // console.log(townsNumber.isInteger());
+        if (townsNumber != null && townsNumber != "") {
+            getTownsList();
+
+        } else {
+            g.selectAll(".mark").remove();
+            alert("Input number must be a valid integer");
+        }
+    });
+
+    $('.howItWorks').click(function(){
+        console.log("worked");
+    });
+
+    $(document).on("click", ".city", function (e) {
+        // console.log($(this).attr('attribute-town'));
+        window.open("https://en.wikipedia.org/wiki/" + $(this).attr('attribute-town'));
+    });
+
+
+}
+
+function initKeyPress() {
+    $('.numberInput').keyup(function(e){
+        if((e.keyCode == 13)){
+            townsNumber = $(".numberInput").val();
+            if (townsNumber != null && townsNumber != "") {
+                getTownsList();
+            } else {
+                g.selectAll(".mark").remove();
+                alert("Input number must be a valid integer");
+            }
+        }
+    });
+}
+
 //in zoom
 function zoomed() {
     g.style("stroke-width", 1.5 / d3.event.scale + "px");
