@@ -8,23 +8,30 @@
 
 $(document).ready(function() {
 
-    svg.append("rect") //append background to the map
-        .attr("class", "background")
-        .attr("width", width)
-        .attr("height", height);
+    var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 
-    g = svg.append("g"); // append <g> to svg container
+    if (!(isChrome)) {
+        svg.append("rect") //append background to the map
+            .attr("class", "background")
+            .attr("width", width)
+            .attr("height", height);
 
-    svg.call(zoom);  // call zoom for zooming and dragging
+        g = svg.append("g"); // append <g> to svg container
 
-    // draw UK map using D3
-    drawMap();
+        svg.call(zoom);  // call zoom for zooming and dragging
 
-    // functions on button click
-    initButtonClick();
+        // draw UK map using D3
+        drawMap();
 
-    // functions on key press
-    initKeyPress();
+        // functions on button click
+        initButtonClick();
+
+        // functions on key press
+        initKeyPress();
+    } else {
+        alert("It was detected that you are using Google Chrome browser. Please use Mozilla Firefox, to allow program to work properly.")
+    }
+
 });
 
 function drawMap() {
