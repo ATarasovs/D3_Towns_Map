@@ -125,9 +125,6 @@ function initButtonClick() {
         }
     });
 
-    $('.howItWorks').click(function(){
-    });
-
     $(document).on("click", ".city", function (e) {
         window.open("https://en.wikipedia.org/wiki/" + $(this).attr('attribute-town'));
     });
