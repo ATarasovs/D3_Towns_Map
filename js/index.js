@@ -5,7 +5,6 @@
  * The core functionality of D3 map was built with the help of https://bost.ocks.org/mike/map/ tutorial.
  */
 
-
 $(document).ready(function() {
 
     var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
@@ -26,6 +25,8 @@ $(document).ready(function() {
         // functions on button click
         initButtonClick();
 
+        $(".numberInput").val(20);
+        getTownsList();
         // functions on key press
         initKeyPress();
     } else {
@@ -76,13 +77,13 @@ function getTownsList() {
                 var county = obj.County; // county
 
                 if (population <= 50000) {
-                    size = 7;
-                } else if (population > 50000 && population <= 100000) {
                     size = 9;
-                } else if (population > 100000 && population <= 150000) {
+                } else if (population > 50000 && population <= 100000) {
                     size = 11;
-                } else {
+                } else if (population > 100000 && population <= 150000) {
                     size = 13;
+                } else {
+                    size = 15;
                 }
 
                 marks = marks.concat({long: longitude, lat: latitude, town: town, population: population, county: county, size: size});
